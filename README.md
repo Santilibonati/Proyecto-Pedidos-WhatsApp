@@ -1,4 +1,4 @@
-# Cremolatti Ice Cream Shop - Order Management System
+# Ice Cream Shop - Order Management System
 
 ## Setup Instructions
 
@@ -8,10 +8,10 @@
 3. Ensure PHP has write permissions to the `exports/` directory
 
 ### File Structure
-- `indexcremolatti.html` - Customer ordering interface
+- `indexClient.html` - Customer ordering interface
 - `admin.html` - Admin panel for order management
 - `export_orders.php` - PHP script for Excel generation
-- `cremolatti.js` - Customer interface functionality
+- `jsClient.js` - Customer interface functionality
 - `admin.js` - Admin panel functionality
 
 ### Excel Export Features
