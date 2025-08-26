@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heladeria</title>
+    <link rel="stylesheet" href="stylesClient.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon"><img src="transparent-Photoroom.png" alt="logo"></div>
+                    <div class="logo-text">
+                        <h1>HELADERIA</h1>
+                        <p>HELADOS</p>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(555) 123-4567</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Sweet Street</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>10AM - 1AM</span>
+                        </div>
+                    </div>
+                    <button class="cart-btn" onclick="scrollToCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        CARRITO (<span id="cart-count">0</span>)
+                        <div class="cart-badge" id="cart-badge">0</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+         <div class="closed-notice" id="closed-notice">
+                <div class="closed-notice-content">
+                    <i class="fas fa-clock"></i>
+                    <span>En este momento estamos cerrados. </span>
+                    <button class="hours-link" onclick="openHoursModal()">Hacé click para consultar nuestros horarios.</button>
+                </div>
+            </div>
+    </header>
+
+  <!-- Added business hours modal -->
+    <div class="modal-overlay" id="hours-modal" onclick="closeHoursModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Horarios de Atención</h3>
+                <button class="modal-close" onclick="closeHoursModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="hours-schedule">
+                    <div class="day-hours">
+                        <span class="day">Lunes a Jueves:</span>
+                        <span class="hours">10:00 AM - 1:00 AM</span>
+                    </div>
+                    <div class="day-hours">
+                        <span class="day">Viernes y Sábados:</span>
+                        <span class="hours">10:00 AM - 3:00 AM</span>
+                    </div>
+                    <div class="day-hours">
+                        <span class="day">Domingos:</span>
+                        <span class="hours">12:00 PM - 1:00 AM</span>
+                    </div>
+                </div>
+                <div class="hours-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Los horarios pueden variar durante días festivos. Para pedidos fuera del horario, puedes contactarnos por WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container main-content">
+        <div class="layout">
+            <!-- Products Section -->
+            <div class="products-section">
+                <!-- Hero Section -->
+                <div class="hero">
+                    <h2>HELADERIA</h2>
+                    <p>Descubra nuestro helado artesanal premium elaborado con los mejores ingredientes.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <i class="fas fa-star"></i>
+                            <span>5 Rating</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterProducts('All')">Todo</button>
+                    <button class="filter-btn" onclick="filterProducts('Helado')">Helado</button>
+                    <button class="filter-btn" onclick="filterProducts('Tortas')">Tortas</button>
+                    <button class="filter-btn" onclick="filterProducts('Desayunos/Meriendas')">Desayunos/Meriendas</button>
+                    <button class="filter-btn" onclick="filterProducts('Apto Celiacos')">Apto Celiacos</button>
+                    <button class="filter-btn" onclick="filterProducts('Postres')">Postres</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div id="cart-section" class="cart-section">
+                <div class="cart-sticky">
+                    <!-- Cart -->
+                    <div class="cart-card">
+                        <div class="card-header">
+                            <h3>
+                                <i class="fas fa-shopping-cart"></i>
+                                Tu orden
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="cart-items" class="cart-items">
+                                <p class="empty-cart">Tu carrito esta vacío</p>
+                            </div>
+                            <div class="cart-total" id="cart-total" style="display: none;">
+                                <div class="total-line">
+                                    <span>Total:</span>
+                                    <span class="total-price" id="total-price">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Information Form -->
+                    <div class="customer-form" id="customer-form" style="display: none;">
+                        <div class="card-header">
+                            <h3>Informacion del Cliente</h3>
+                            <p>Complete sus datos para completar el pedido</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label for="customer-name">Nombre Completo *</label>
+                                <input type="text" id="customer-name" placeholder="Nombre Completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone">Teléfono *</label>
+                                <input type="tel" id="customer-phone" placeholder="Teléfono" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-address">Domicilio *</label>
+                                <textarea id="customer-address" placeholder="Direccion Completa" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment-method">Método de Pago *</label>
+                                <select id="payment-method" required>
+                                    <option value="">Seleccionar método de pago</option>
+                                    <option value="cash">Efectivo</option>
+                                    <option value="card">Tarjetas de Débito/Crédito</option>
+                                    <option value="digital">Mercado Pago</option>
+                                    <option value="bank">Transferencia</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="special-notes">Notas (Opcional)</label>
+                                <textarea id="special-notes" placeholder="Alguna instrucción o nota que quieras agregar" rows="2"></textarea>
+                            </div>
+                            <button type="button" class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+                                <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.690" />
+                                </svg>
+                                Enviar orden via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HELADERIA</h3>
+                    <p>Helado artesanal premium elaborado con amor y los mejores ingredientes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Sweet Street, Ice Cream City</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Atendemos: 10:00 AM - 01:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Orden Rápida</h4>
+                    <p>¡Haz tu pedido directamente por WhatsApp para un servicio más rápido!</p>
+                    <button class="whatsapp-footer-btn" onclick="openWhatsApp()">
+                        <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.690" />
+                        </svg>
+                        WhatsApp
+                    </button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Heladeria. Derechos Reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="jsClient.js"></script>
+    <!-- POPUP -->
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup" id="popupContent">
+    <!-- Aquí se insertará dinámicamente la selección de sabores y toppings -->
+      </div>
+</div>
+
+</body>
+</html>
+ 
