@@ -8,7 +8,6 @@ const products = [
     price: 20000,
     image: "1kg.png",
     category: "Helado",
-    rating: 4.9,
     popular: true,
   },
   {
@@ -18,7 +17,6 @@ const products = [
     price: 12000,
     image: "mediokilo.jpg",
     category: "Helado",
-    rating: 4.9,
     popular: true,
   },
   {
@@ -38,7 +36,6 @@ const products = [
     price: 8000,
     image: "1kg.png",
     category: "Apto Celiacos",
-    rating: 4.8,
   },
   {
     id: 5,
@@ -47,7 +44,6 @@ const products = [
     price: 8000,
     image: "mediokilo.jpg",
     category: "Apto Celiacos",
-    rating: 4.8,
   },
   {
     id: 6,
@@ -56,7 +52,6 @@ const products = [
     price: 8000,
     image: "cuartokilo.png",
     category: "Apto Celiacos",
-    rating: 4.8,
     popular: true,
   },
   {
@@ -66,7 +61,6 @@ const products = [
     price: 8000,
     image: "milkshake.jpg",
     category: "Desayunos/Meriendas",
-    rating: 4.8,
     popular: true,
   },
   {
@@ -76,7 +70,6 @@ const products = [
     price: 8000,
     image: "Diseño sin título.png",
     category: "Desayunos/Meriendas",
-    rating: 4.8,
   },
   {
     id: 9,
@@ -85,7 +78,6 @@ const products = [
     price: 8000,
     image: "brownieconhelado.png",
     category: "Desayunos/Meriendas",
-    rating: 4.7,
   },
   {
     id: 10,
@@ -94,7 +86,6 @@ const products = [
     price: 5000,
     image: "ChatGPT Image 8 ago 2025, 17_01_34.png",
     category: "Desayunos/Meriendas",
-    rating: 4.8,
     popular: true,
   },
   {
@@ -104,8 +95,6 @@ const products = [
     price: 8000,
     image: "chocotorta2.jpg",
     category: "Tortas",
-    rating: 4.8,
-    popular: true,
   },
   {
     id: 12,
@@ -114,7 +103,6 @@ const products = [
     price: 4500,
     image: "torta-chaja-foto-principal.jpg",
     category: "Tortas",
-    rating: 4.8,
   },
   {
     id: 13,
@@ -123,7 +111,6 @@ const products = [
     price: 8000,
     image: "tiramisu.png",
     category: "Postres",
-    rating: 4.8,
   },
   {
     id: 14,
@@ -132,7 +119,6 @@ const products = [
     price: 8000,
     image: "casata.png",
     category: "Postres",
-    rating: 4.8,
   },
 ]
 
@@ -288,10 +274,6 @@ function renderProducts() {
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}" onerror="this.src='/placeholder.svg?height=200&width=300&text=${encodeURIComponent(product.name)}'">
                 ${product.popular ? '<div class="popular-badge">Popular</div>' : ""}
-                <div class="rating-badge">
-                    <i class="fas fa-star"></i>
-                    <span>${product.rating}</span>
-                </div>
             </div>
             <div class="product-info">
                 <div class="product-header">
@@ -1152,3 +1134,4 @@ window.addEventListener("click", (e) => {
     activeFlavorSelection = null;
   }
 });
+
