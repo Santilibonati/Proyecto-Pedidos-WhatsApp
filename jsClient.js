@@ -26,7 +26,6 @@ const products = [
     price: 7500,
     image: "cuartokilo.png",
     category: "Helado",
-    rating: 4.9,
     popular: true,
   },
   {
@@ -95,6 +94,7 @@ const products = [
     price: 8000,
     image: "chocotorta2.jpg",
     category: "Tortas",
+    popular: true,
   },
   {
     id: 12,
@@ -121,6 +121,10 @@ const products = [
     category: "Postres",
   },
 ]
+
+function formatPrice(price) {
+  return price.toLocaleString("es-AR") // 12000 → "12.000"
+}
 
 // Available flavors
 const availableFlavors = [
@@ -289,7 +293,7 @@ function renderProducts() {
                 </div>-->
             </div>
             <div class="product-footer">
-                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-price">$${formatPrice(product.price)}</div>
                 <div class="product-controls">
                     ${getProductControls(product)}
                 </div>
@@ -756,7 +760,7 @@ function updateCartDisplay() {
               <h4>${displayName}</h4>
               ${flavorText}
               ${toppingsText}
-              <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity} = $${calculateItemTotal(item).toFixed(2)}</div>
+              <div class="cart-item-price">$${formatPrice(item.price)} x ${item.quantity} = $${formatPrice(calculateItemTotal(item))}</div>
             </div>
             <button class="remove-item-btn" onclick="removeFromCart(${item.id}, ${item.instanceId || "null"})">
               <i class="fas fa-times"></i>
@@ -767,7 +771,7 @@ function updateCartDisplay() {
       .join("")
 
     cartTotal.style.display = "block"
-    totalPrice.textContent = `$${totalCost.toFixed(2)}`
+    totalPrice.textContent = `$${formatPrice(totalCost)}`
     customerForm.style.display = "block"
   }
 
@@ -1134,4 +1138,3 @@ window.addEventListener("click", (e) => {
     activeFlavorSelection = null;
   }
 });
-
