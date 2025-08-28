@@ -779,6 +779,7 @@ function updateCartDisplay() {
 }
 function generateWhatsAppMessage() {
   let message = "*Nuevo pedido Heladería*\n\n";
+  let totalPrice = 0;
 
   cart.forEach((item, index) => {
     message += `*${index + 1}. ${item.name}*\n`;
@@ -795,6 +796,8 @@ function generateWhatsAppMessage() {
       }
     }
 
+    let itemPrice = 0;//se va a ir acumulando: mas que nada para el caso de helados con toppings.
+
     // Toppings
     if (item.toppings && Object.keys(item.toppings).length > 0) {
       message += "\n"
@@ -803,20 +806,24 @@ function generateWhatsAppMessage() {
         const topping = availableToppings.find(t => t.id === toppingId);
         if (topping) {
           message += `   - ${topping.name} x${count}\n`;
+          itemPrice += topping.price;
         }
       }
     }
 
     if (item.price) {
-      message += `\n Precio: $${item.price}\n`;
+      itemPrice += item.price;
+      totalPrice += itemPrice;
+      itemPrice = formatPrice(itemPrice);
+      message += `\n Precio: $${itemPrice}\n`;
     }
-
+    
     message += "\n";
   });
 
-  const total = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+  //const total = cart.reduce((sum, item) => sum + (item.price || 0), 0);
   message += "=====================\n";
-  message += `*Total: $${total}*\n`;
+  message += `*Total: $${formatPrice(totalPrice)}*\n`;
 
   const nameInput = document.getElementById("customer-name")?.value || "";
   const phoneInput = document.getElementById("customer-phone")?.value || "";
