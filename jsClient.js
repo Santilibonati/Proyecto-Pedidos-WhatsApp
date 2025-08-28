@@ -31,7 +31,7 @@ const products = [
   {
     id: 4,
     name: "1KG PARA CELÍACOS",
-    description: "",
+    description: "Podes elegir hasta 4 gustos",
     price: 8000,
     image: "1kg.png",
     category: "Apto Celiacos",
@@ -39,7 +39,7 @@ const products = [
   {
     id: 5,
     name: "1/2 KG PARA CELÍACOS",
-    description: "",
+    description: "Podes elegir hasta 3 gustos",
     price: 8000,
     image: "mediokilo.jpg",
     category: "Apto Celiacos",
@@ -47,7 +47,7 @@ const products = [
   {
     id: 6,
     name: "1/4 KG PARA CELÍACOS",
-    description: "",
+    description: "Podes elegir hasta 3 gustos",
     price: 8000,
     image: "cuartokilo.png",
     category: "Apto Celiacos",
@@ -817,7 +817,7 @@ function generateWhatsAppMessage() {
       itemPrice = formatPrice(itemPrice);
       message += `\n Precio: $${itemPrice}\n`;
     }
-    
+
     message += "\n";
   });
 
