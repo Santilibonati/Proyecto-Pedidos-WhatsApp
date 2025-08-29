@@ -844,8 +844,13 @@ function generateWhatsAppMessage() {
 
 // Scroll to cart section
 function scrollToCart() {
-  const cartSection = document.getElementById("cart-section")
-  cartSection.scrollIntoView({ behavior: "smooth" })
+  const cartCount = document.getElementById("cart-count").textContent
+
+  //si el carrito no tiene nada, no es necesario que baje hacia el form
+  if(cartCount > 0){
+    const cartSection = document.getElementById("cart-section")
+    cartSection.scrollIntoView({ behavior: "smooth" })
+  }
 }
 
 // Update WhatsApp button state
