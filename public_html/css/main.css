@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Nunito;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #e2d0ec 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+.container {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/*HEADER*/
+.header {
+  background: #81638b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  font-size: 2rem;
+}
+
+.logo-icon img {
+  width: 40px;;
+}
+
+.logo-text h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.logo-text p {
+  font-size: 0.875rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+/*FIN HEADER*/
+
+
+/*MENSAJES TEMPORALES*/
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #16a34a;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  z-index: 2000;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: successPop 0.3s ease-out;
+}
+
+.warning-message {
+  position: fixed;
+  /*
+  top: 40px;
+  animation: successPop 0.3s ease-out;*/
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ef4444;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  z-index: 2500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease;
+}
+/*FIN MENSAJES TEMPORALES*/
+
+.admin-card ,.product-card {
+  background: #81638b;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+  color: white;
+}
+
+.admin-btn.primary, .admin-btn.secondary,
+.admin-nav .nav-link:hover,
+.popup .cancel-btn {
+  background: #e0d1ec;
+  color: #6f6181;
+}
+
+.admin-card .card-content, .card-content {
+  padding: 1.5rem;
+}

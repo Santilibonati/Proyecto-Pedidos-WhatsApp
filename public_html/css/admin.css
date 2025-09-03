@@ -1,0 +1,147 @@
+.admin-nav .nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 100;
+  font-family: Nunito;
+}
+
+.admin-content {
+  padding: 2rem 1rem;
+  min-height: calc(100vh - 120px);
+}
+
+.admin-dashboard h2 {
+  color: #81638b;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Updated card styling to match client product cards */
+.admin-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.admin-card .card-header {
+  padding: 1.5rem 1.5rem 0;
+  background: transparent;
+  border-bottom: none;
+}
+
+.admin-card .card-header h3 {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.admin-card .card-content p {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.admin-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Updated button styling to match client buttons */
+.admin-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: Nunito;
+  font-size: 0.875rem;
+}
+
+.admin-btn.primary:hover {
+  background: #e2cffa;
+  transform: translateY(-1px);
+}
+
+.admin-btn.secondary:hover {
+  background: #e2cffa;
+  color: #6f6181;
+}
+
+.orders-list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+/* Updated order items to match client styling */
+.order-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  backdrop-filter: blur(10px);
+}
+
+.order-item h4 {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.order-item p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.order-products li{
+  list-style-type: none;
+}
+
+.order-total {
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .admin-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-buttons {
+    flex-direction: column;
+  }
+
+  .admin-content {
+    padding: 1rem;
+  }
+}
